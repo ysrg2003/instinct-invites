@@ -448,14 +448,29 @@
     renderInvite();
   });
 
+  var visitorId = (function () {
+    try {
+      var v = localStorage.getItem('visitor_id');
+      if (!v) {
+        v = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random());
+        localStorage.setItem('visitor_id', v);
+      }
+      return v;
+    } catch (e) { return 'anon-' + String(Date.now()) + Math.random(); }
+  })();
+
   document.getElementById('flag-btn').addEventListener('click', function () {
     if (!invites.length) return;
     var current = invites[idx];
-    sb.from('flags').insert({ invite_id: current.id }).then(function () {
-      invites.splice(idx, 1);
+    sb.from('flags').insert({ invite_id: current.id, flagger: visitorId }).then(function (res) {
       inviteMsg.className = 'msg';
-      inviteMsg.textContent = 'Thanks for flagging it. Here is another one.';
-      updateLivePill();
+      if (res.error) {
+        inviteMsg.textContent = 'You already flagged this link. Got it, thanks - your flag is counted.';
+      } else {
+        inviteMsg.textContent = 'Got it, thanks. Flags from a few different visitors hide a used-up link for everyone. Here is another one.';
+        invites.splice(idx, 1);
+        updateLivePill();
+      }
       renderInvite();
     });
   });
