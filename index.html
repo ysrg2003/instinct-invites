@@ -3,132 +3,316 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Get an Instinct Invite | Community Invite Exchange</title>
-<meta name="description" content="A community board of donated Instinct invite links. Take one, join, then pass yours on. Unofficial and not affiliated with Instinct.">
+<title>Get a Free Instinct Invite | Community Invite Exchange</title>
+<meta name="description" content="Skip the Instinct waitlist with a free invite link donated by the community. Take one, sign up, then pass yours on. Unofficial, not affiliated with Instinct.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0a0e14">
+<link rel="canonical" href="https://instinct-invites-omega.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Get a Free Instinct Invite | Community Invite Exchange">
+<meta property="og:description" content="Skip the Instinct waitlist with a free invite link donated by the community. Take one, sign up, then pass yours on.">
+<meta property="og:url" content="https://instinct-invites-omega.vercel.app/">
+<meta property="og:image" content="https://instinct-invites-omega.vercel.app/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Get a Free Instinct Invite | Community Invite Exchange">
+<meta name="twitter:description" content="Skip the Instinct waitlist with a free invite link donated by the community. Take one, sign up, then pass yours on.">
+<meta name="twitter:image" content="https://instinct-invites-omega.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "name": "Community Invite Exchange",
+      "url": "https://instinct-invites-omega.vercel.app/",
+      "description": "A community board of donated Instinct invite links. Unofficial, not affiliated with Instinct.",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is this page official or affiliated with Instinct?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. This is an unofficial community project run by AI with Yousef. Instinct does not sponsor or endorse it. The official site is instinct.com." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I get an Instinct invite?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Make the promise to pass your invite on, optionally leave your email, then copy a donated invite link and sign up. If a link is used up, flag it and try another." }
+        },
+        {
+          "@type": "Question",
+          "name": "What does an Instinct invite link do?",
+          "acceptedAnswer": { "@type": "Answer", "text": "It lets you create an Instinct account without joining the waitlist. Each link works for a limited number of signups." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I have to give my email address?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. Email is completely optional. You can skip it and still get an invite. If you do leave it, it is used to notify you about available invites, and, only with your explicit consent, for occasional updates." }
+        },
+        {
+          "@type": "Question",
+          "name": "Where do the invite links come from?",
+          "acceptedAnswer": { "@type": "Answer", "text": "They are donated by people who got in and chose to share their own invite links, so the next person can join too." }
+        },
+        {
+          "@type": "Question",
+          "name": "What if every invite link is used up?",
+          "acceptedAnswer": { "@type": "Answer", "text": "New links arrive as members donate theirs. Leave your email on the page and you will be notified when a new invite is available." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <style>
   :root {
-    --bg: #0d1117; --card: #161b22; --border: #2d333b; --text: #e6edf3;
-    --muted: #9da7b3; --accent: #4c8dff; --accent-dark: #3a6fd8; --good: #3fb950;
+    --bg: #0a0e14; --card: #12161f; --card2: #171c27; --border: #262d3a;
+    --text: #eef2f8; --muted: #97a1b3; --accent: #5b8cff; --accent2: #8b5cf6;
+    --good: #34d399; --warn-bg: #221c08; --warn-border: #5c4c15; --warn-text: #e8d48a;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; }
-  .wrap { max-width: 640px; margin: 0 auto; padding: 24px 18px 60px; }
-  .banner { background: #2d2306; border: 1px solid #6b5a12; color: #e8d48a; border-radius: 10px; padding: 10px 14px; font-size: 14px; margin-bottom: 28px; }
-  h1 { font-size: 30px; line-height: 1.25; margin-bottom: 10px; }
-  .sub { color: var(--muted); font-size: 17px; margin-bottom: 28px; }
-  .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 22px; margin-bottom: 22px; }
-  h2 { font-size: 20px; margin-bottom: 12px; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 660px; margin: 0 auto; padding: 18px 18px 70px; }
+
+  .banner {
+    background: var(--warn-bg); border: 1px solid var(--warn-border); color: var(--warn-text);
+    border-radius: 10px; padding: 9px 14px; font-size: 13px; text-align: center; margin-bottom: 8px;
+  }
+
+  /* HERO */
+  .hero { text-align: center; padding: 44px 8px 30px; }
+  .live-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--card2); border: 1px solid var(--border); border-radius: 999px;
+    padding: 7px 16px; font-size: 13.5px; font-weight: 600; color: var(--muted); margin-bottom: 22px;
+  }
+  .live-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--good); }
+  .live-pill.has .dot { animation: pulse 2s infinite; }
+  .live-pill.has { color: var(--good); }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+  h1 {
+    font-size: clamp(34px, 7vw, 46px); font-weight: 800; line-height: 1.12;
+    letter-spacing: -0.02em; margin-bottom: 16px;
+    background: linear-gradient(120deg, #fff 30%, #a8bcff 70%, #c4a8ff);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero .sub { color: var(--muted); font-size: 17.5px; max-width: 460px; margin: 0 auto 26px; }
+  .cta {
+    display: inline-block; background: linear-gradient(120deg, var(--accent), var(--accent2));
+    color: #fff; border: 0; border-radius: 12px; padding: 15px 34px; font-size: 16.5px;
+    font-weight: 700; cursor: pointer; text-decoration: none;
+    box-shadow: 0 8px 26px rgba(91,140,255,.28); transition: transform .15s, box-shadow .15s;
+  }
+  .cta:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(91,140,255,.4); }
+
+  /* HOW IT WORKS */
+  .how { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 34px; }
+  .how .step {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    padding: 16px 14px; text-align: center;
+  }
+  .how .num {
+    width: 30px; height: 30px; border-radius: 50%; margin: 0 auto 10px;
+    background: linear-gradient(120deg, var(--accent), var(--accent2));
+    color: #fff; font-weight: 700; font-size: 14px; line-height: 30px;
+  }
+  .how .step p { font-size: 13.5px; color: var(--muted); margin: 0; line-height: 1.45; }
+  .how .step strong { display: block; font-size: 14.5px; margin-bottom: 4px; color: var(--text); }
+
+  /* ACTION CARD + STEPPER */
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 26px 24px; margin-bottom: 20px;
+  }
+  .stepper { display: flex; align-items: center; gap: 8px; margin-bottom: 24px; }
+  .stepper .s {
+    flex: 1; text-align: center; font-size: 12.5px; color: var(--muted); font-weight: 600;
+    padding-bottom: 10px; border-bottom: 3px solid var(--border); transition: all .25s;
+  }
+  .stepper .s.active { color: var(--text); border-color: var(--accent); }
+  .stepper .s.done { color: var(--good); border-color: var(--good); }
+
+  h2 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 8px; }
+  .lead { color: var(--muted); font-size: 15px; margin-bottom: 16px; }
   p { margin-bottom: 12px; }
-  .muted { color: var(--muted); font-size: 14px; }
-  ol.steps { padding-left: 22px; margin-bottom: 8px; }
-  ol.steps li { margin-bottom: 8px; }
-  label.check { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; margin: 12px 0; font-size: 15px; }
-  label.check input { width: 20px; height: 20px; margin-top: 3px; accent-color: var(--accent); flex: none; }
-  button { background: var(--accent); color: #fff; border: 0; border-radius: 9px; padding: 12px 18px; font-size: 15px; font-weight: 600; cursor: pointer; }
-  button:hover { background: var(--accent-dark); }
-  button:disabled { background: #2d333b; color: #6e7681; cursor: not-allowed; }
-  button.ghost { background: transparent; border: 1px solid var(--border); color: var(--text); font-weight: 500; }
-  button.ghost:hover { border-color: var(--accent); }
-  .invite-url { display: block; word-break: break-all; background: #0d1117; border: 1px solid var(--border); border-radius: 9px; padding: 12px 14px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 14px; margin: 14px 0; color: var(--good); }
-  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
-  .count { color: var(--muted); font-size: 14px; margin-top: 14px; }
-  input[type=email], input[type=url], input[type=text] { width: 100%; background: #0d1117; border: 1px solid var(--border); border-radius: 9px; color: var(--text); padding: 12px 14px; font-size: 15px; margin: 8px 0 12px; }
+  .muted { color: var(--muted); font-size: 13.5px; }
+
+  .step-panel { display: none; animation: fadeUp .35s ease; }
+  .step-panel.show { display: block; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+  label.check { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; margin: 14px 0; font-size: 15px; line-height: 1.5; }
+  label.check input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--accent); flex: none; cursor: pointer; }
+
+  button { font-family: inherit; }
+  .btn {
+    background: linear-gradient(120deg, var(--accent), var(--accent2)); color: #fff; border: 0;
+    border-radius: 11px; padding: 13px 22px; font-size: 15px; font-weight: 700; cursor: pointer;
+    transition: transform .15s, box-shadow .15s, opacity .15s;
+  }
+  .btn:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(91,140,255,.3); }
+  .btn:disabled { background: #232936; color: #5b6473; cursor: not-allowed; box-shadow: none; }
+  .btn.ghost { background: transparent; border: 1px solid var(--border); color: var(--muted); font-weight: 600; }
+  .btn.ghost:hover { border-color: var(--accent); color: var(--text); box-shadow: none; transform: none; }
+  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+
+  .invite-url {
+    display: block; word-break: break-all; background: #0a0e14; border: 1px solid var(--good);
+    border-radius: 11px; padding: 14px 16px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 13.5px; margin: 14px 0; color: var(--good);
+  }
+  .count { color: var(--muted); font-size: 13.5px; margin-top: 16px; }
+
+  input[type=email], input[type=url], input[type=text] {
+    width: 100%; background: #0a0e14; border: 1px solid var(--border); border-radius: 11px;
+    color: var(--text); padding: 13px 15px; font-size: 15px; margin: 6px 0 12px; font-family: inherit;
+    transition: border-color .15s;
+  }
   input[type=email]:focus, input[type=url]:focus { outline: none; border-color: var(--accent); }
   .hp { position: absolute; left: -9999px; opacity: 0; height: 0; overflow: hidden; }
-  .msg { font-size: 14px; margin-top: 10px; }
+
+  .msg { font-size: 14px; margin-top: 10px; min-height: 1em; }
   .msg.ok { color: var(--good); }
   .msg.err { color: #f47067; }
-  a { color: var(--accent); }
-  .promo a { display: block; padding: 12px 14px; border: 1px solid var(--border); border-radius: 9px; text-decoration: none; margin-bottom: 10px; color: var(--text); }
-  .promo a:hover { border-color: var(--accent); }
-  .promo a span { color: var(--muted); font-size: 14px; display: block; }
-  footer { border-top: 1px solid var(--border); margin-top: 30px; padding-top: 18px; color: var(--muted); font-size: 13px; }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .promo a {
+    display: block; padding: 15px 16px; border: 1px solid var(--border); border-radius: 12px;
+    margin-bottom: 10px; color: var(--text); font-weight: 600; transition: border-color .15s, transform .15s;
+  }
+  .promo a:hover { border-color: var(--accent); transform: translateY(-1px); text-decoration: none; }
+  .promo a span { color: var(--muted); font-size: 13.5px; display: block; font-weight: 400; }
+
+  ol.steps { padding-left: 22px; margin-bottom: 8px; }
+  ol.steps li { margin-bottom: 9px; color: var(--muted); font-size: 14.5px; }
+
+  footer { border-top: 1px solid var(--border); margin-top: 34px; padding-top: 20px; color: var(--muted); font-size: 13px; }
   footer p { margin-bottom: 8px; }
-  .hidden { display: none; }
+
+  @media (max-width: 560px) {
+    .how { grid-template-columns: 1fr; gap: 10px; }
+    .how .step { display: flex; align-items: center; gap: 14px; text-align: left; padding: 14px 16px; }
+    .how .num { margin: 0; flex: none; }
+    .hero { padding: 32px 4px 26px; }
+    .card { padding: 22px 18px; }
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <div class="banner">This is an unofficial community page. It is not affiliated with, sponsored, or endorsed by Instinct.</div>
+  <div class="banner">Unofficial community page. Not affiliated with, sponsored, or endorsed by Instinct.</div>
 
-  <h1>Get an Instinct invite</h1>
-  <p class="sub">Invites donated by people who got in. Take one, join, then pass yours on.</p>
+  <div class="hero">
+    <div class="live-pill" id="live-pill"><span class="dot"></span><span id="live-count">Checking availability...</span></div>
+    <h1>Skip the waitlist.<br>Join Instinct today.</h1>
+    <p class="sub">Free invite links, donated by people who just got in. Take one, sign up, then pass yours on to keep the chain alive.</p>
+    <a class="cta" href="#start">Get my invite</a>
+  </div>
+
+  <div class="how">
+    <div class="step"><div class="num">1</div><div><strong>Make the promise</strong><p>You will pass your own invite on after you get in.</p></div></div>
+    <div class="step"><div class="num">2</div><div><strong>Copy a link</strong><p>Sign up in minutes. If a link is used up, flag it and try the next.</p></div></div>
+    <div class="step"><div class="num">3</div><div><strong>Pay it forward</strong><p>Come back and donate your invite so the next person joins too.</p></div></div>
+  </div>
+
+  <div class="card" id="start">
+    <div class="stepper">
+      <div class="s active" id="step-ind-1">1 · Promise</div>
+      <div class="s" id="step-ind-2">2 · Email (optional)</div>
+      <div class="s" id="step-ind-3">3 · Your invite</div>
+    </div>
+
+    <!-- STEP 1: PROMISE -->
+    <div class="step-panel show" id="panel-1">
+      <h2>One promise first</h2>
+      <p class="lead">This board only works because people come back and share. That is the deal.</p>
+      <label class="check">
+        <input type="checkbox" id="promise">
+        <span>I promise that after I get in, I will come back and add my own invite link so the next person can join.</span>
+      </label>
+      <p class="muted">This is a promise on your honor. We cannot and do not verify it.</p>
+      <button class="btn" id="to-step-2" disabled>Continue</button>
+    </div>
+
+    <!-- STEP 2: OPTIONAL EMAIL -->
+    <div class="step-panel" id="panel-2">
+      <h2>Stay in the loop? <span class="muted" style="font-size:14px; font-weight:500;">(optional)</span></h2>
+      <p class="lead">Leave your email to hear about similar events and updates from AI with Yousef. Totally optional: skip and you still get your invite.</p>
+      <form id="loop-form">
+        <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off">
+        <input type="email" id="loop-email" placeholder="you@example.com">
+        <label class="check">
+          <input type="checkbox" id="loop-consent">
+          <span>Yes, email me about similar events and updates. I can unsubscribe at any time.</span>
+        </label>
+        <div class="btn-row">
+          <button class="btn" type="submit" id="loop-submit">Keep me posted</button>
+          <button class="btn ghost" type="button" id="skip-email">Skip</button>
+        </div>
+      </form>
+      <p class="msg" id="loop-msg"></p>
+      <p class="muted">Your choice, never pre-ticked. Details in the privacy note below.</p>
+    </div>
+
+    <!-- STEP 3: INVITE -->
+    <div class="step-panel" id="panel-3">
+      <div id="invite-view">
+        <h2>Here is your invite</h2>
+        <p class="lead">Open the link and sign up. If it says the invite is used up, flag it and try the next one.</p>
+        <span class="invite-url" id="invite-url"></span>
+        <div class="btn-row">
+          <button class="btn" id="copy-btn">Copy link</button>
+          <button class="btn ghost" id="another-btn">Show a different link</button>
+          <button class="btn ghost" id="flag-btn">This link is used up</button>
+        </div>
+        <p class="msg" id="invite-msg"></p>
+        <p class="count" id="invite-count"></p>
+      </div>
+      <div id="empty-view" style="display:none;">
+        <h2>All out, for now</h2>
+        <p class="lead">Every donated invite has been used. New links arrive as members come back and share theirs, and that can change any hour.</p>
+        <div id="empty-notify">
+          <p>Leave your email and we will tell you the moment a new invite lands.</p>
+          <form id="notify-form">
+            <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off">
+            <input type="email" id="notify-email" placeholder="you@example.com" required>
+            <button class="btn" type="submit">Email me when an invite is available</button>
+          </form>
+          <p class="msg" id="notify-msg"></p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="card">
-    <h2>How it works</h2>
-    <ol class="steps">
-      <li>Make the promise below.</li>
-      <li>Copy an invite link and sign up. Each link works for a limited number of people, so if one is used up, try another.</li>
-      <li>After you get in, come back and donate your own invite link so the next person can join.</li>
-    </ol>
-  </div>
-
-  <div class="card" id="promise-card">
-    <h2>The promise</h2>
-    <label class="check">
-      <input type="checkbox" id="promise">
-      <span>I promise that after I get in, I will come back and add my own invite link so the next person can join.</span>
-    </label>
-    <p class="muted">This is a promise on your honor. We cannot and do not verify it.</p>
-    <button id="show-invite" disabled>Show me an invite</button>
-  </div>
-
-  <div class="card hidden" id="invite-card">
-    <h2>Your invite link</h2>
-    <p class="muted">Open this link and sign up. If it says the invite is used up, flag it and try another.</p>
-    <span class="invite-url" id="invite-url"></span>
-    <div class="btn-row">
-      <button id="copy-btn">Copy link</button>
-      <button class="ghost" id="another-btn">Show a different link</button>
-      <button class="ghost" id="flag-btn">This link is used up</button>
-    </div>
-    <p class="msg" id="invite-msg"></p>
-    <p class="count" id="invite-count"></p>
-  </div>
-
-  <div class="card hidden" id="empty-card">
-    <h2>No invites right now</h2>
-    <p>All donated invites are used up at the moment. New ones arrive when members come back and donate theirs.</p>
-    <p>Leave your email and we will let you know when an invite is available.</p>
-    <form id="notify-form">
-      <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off">
-      <input type="email" id="notify-email" placeholder="you@example.com" required>
-      <button type="submit">Email me when an invite is available</button>
-    </form>
-    <p class="msg" id="notify-msg"></p>
-  </div>
-
-  <div class="card" id="donate-card">
     <h2>Got in? Pay it forward</h2>
-    <p>Ask Instinct for your invite link, paste it here, and help the next person skip the waitlist. Even one or two invites make a difference.</p>
+    <p class="lead">Ask Instinct for your invite link, paste it here, and help the next person skip the waitlist. Even one or two invites keep the chain alive.</p>
     <form id="donate-form">
       <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off">
       <input type="url" id="donate-url" placeholder="https://app.instinct.com/invite?t=..." required>
-      <button type="submit">Donate my invite link</button>
+      <button class="btn" type="submit">Donate my invite link</button>
     </form>
     <p class="msg" id="donate-msg"></p>
   </div>
 
-  <div class="card">
-    <h2>Stay in the loop (optional)</h2>
-    <p class="muted">Leave your email if you want to hear about similar events and updates from AI with Yousef. This is optional and separate from getting an invite.</p>
-    <form id="loop-form">
-      <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off">
-      <input type="email" id="loop-email" placeholder="you@example.com" required>
-      <label class="check">
-        <input type="checkbox" id="loop-consent">
-        <span>Yes, email me about similar events and updates. I can unsubscribe at any time.</span>
-      </label>
-      <button type="submit">Keep me posted</button>
-    </form>
-    <p class="msg" id="loop-msg"></p>
-  </div>
-
   <div class="card promo">
     <h2>Who runs this</h2>
-    <p class="muted">This page is run by AI with Yousef: practical AI workflows, tools and experiments in short videos and posts.</p>
+    <p class="lead">This page is run by AI with Yousef: practical AI workflows, tools and experiments in short videos and posts.</p>
     <a href="https://www.facebook.com/share/18gJATwsXq/" target="_blank" rel="noopener">AI with Yousef on Facebook<span>Short, practical AI videos</span></a>
     <a href="https://aiwithyousef.blogspot.com" target="_blank" rel="noopener">AI with Yousef blog<span>Guides and write-ups</span></a>
   </div>
@@ -136,14 +320,24 @@
   <div class="card">
     <h2>How to sign up once you have a link</h2>
     <ol class="steps">
-      <li>Open an invite link from the list above.</li>
+      <li>Open an invite link you copied above.</li>
       <li>Tap to text Instinct and enter your phone number.</li>
       <li>You will get a verification code. Enter it on the site.</li>
       <li>Pick the channel you want to talk on: SMS, WhatsApp, email or Telegram.</li>
       <li>Send "hi". If it replies with your name, you are in.</li>
-      <li>Then ask Instinct for your own invite link and donate it above.</li>
+      <li>Then ask Instinct for your own invite link and donate it here.</li>
     </ol>
     <p class="muted">The official site is <a href="https://instinct.com" target="_blank" rel="noopener">instinct.com</a>.</p>
+  </div>
+
+  <div class="card" id="faq">
+    <h2>Common questions</h2>
+    <p><strong>Is this page official or affiliated with Instinct?</strong><br><span class="muted">No. This is an unofficial community project run by AI with Yousef. Instinct does not sponsor or endorse it. The official site is instinct.com.</span></p>
+    <p><strong>How do I get an Instinct invite?</strong><br><span class="muted">Make the promise to pass your invite on, optionally leave your email, then copy a donated invite link and sign up. If a link is used up, flag it and try another.</span></p>
+    <p><strong>What does an invite link do?</strong><br><span class="muted">It lets you create an Instinct account without joining the waitlist. Each link works for a limited number of signups.</span></p>
+    <p><strong>Do I have to give my email address?</strong><br><span class="muted">No. Email is completely optional. You can skip it and still get an invite.</span></p>
+    <p><strong>Where do the invite links come from?</strong><br><span class="muted">They are donated by people who got in and chose to share their own invite links, so the next person can join too.</span></p>
+    <p style="margin-bottom:0;"><strong>What if every link is used up?</strong><br><span class="muted">New links arrive as members donate theirs. Leave your email and we will tell you the moment a new invite lands.</span></p>
   </div>
 
   <div class="card">
@@ -168,27 +362,58 @@
 
   var invites = [];
   var idx = 0;
+  var gaveEmail = false;
 
   var promiseBox = document.getElementById('promise');
-  var showBtn = document.getElementById('show-invite');
-  var inviteCard = document.getElementById('invite-card');
-  var emptyCard = document.getElementById('empty-card');
+  var toStep2 = document.getElementById('to-step-2');
   var inviteUrl = document.getElementById('invite-url');
   var inviteMsg = document.getElementById('invite-msg');
   var inviteCount = document.getElementById('invite-count');
+  var inviteView = document.getElementById('invite-view');
+  var emptyView = document.getElementById('empty-view');
+
+  function goToStep(n) {
+    [1, 2, 3].forEach(function (i) {
+      document.getElementById('panel-' + i).classList.toggle('show', i === n);
+      var ind = document.getElementById('step-ind-' + i);
+      ind.classList.toggle('active', i === n);
+      ind.classList.toggle('done', i < n);
+    });
+  }
 
   promiseBox.addEventListener('change', function () {
-    showBtn.disabled = !promiseBox.checked;
+    toStep2.disabled = !promiseBox.checked;
   });
+  toStep2.addEventListener('click', function () { goToStep(2); });
+  document.getElementById('skip-email').addEventListener('click', function () {
+    goToStep(3);
+    renderInvite();
+  });
+
+  function updateLivePill() {
+    var pill = document.getElementById('live-pill');
+    var label = document.getElementById('live-count');
+    if (invites.length > 0) {
+      pill.classList.add('has');
+      label.textContent = invites.length + (invites.length === 1 ? ' invite' : ' invites') + ' available right now';
+    } else {
+      pill.classList.remove('has');
+      label.textContent = 'Restocking: new invites arrive as members donate theirs';
+    }
+  }
 
   function renderInvite() {
     if (!invites.length) {
-      inviteCard.classList.add('hidden');
-      emptyCard.classList.remove('hidden');
+      inviteView.style.display = 'none';
+      emptyView.style.display = 'block';
+      if (gaveEmail) {
+        document.getElementById('empty-notify').innerHTML =
+          '<p class="muted">We have your email from the last step. We will only use it the way you chose.</p>';
+      }
       return;
     }
-    emptyCard.classList.add('hidden');
-    inviteCard.classList.remove('hidden');
+    inviteView.style.display = 'block';
+    emptyView.style.display = 'none';
     if (idx >= invites.length) idx = 0;
     inviteUrl.textContent = invites[idx].url;
     inviteCount.textContent = invites.length + (invites.length === 1 ? ' invite' : ' invites') + ' available right now.';
@@ -198,15 +423,9 @@
     sb.from('invites').select('id,url').order('created_at', { ascending: true })
       .then(function (res) {
         if (!res.error && res.data) invites = res.data;
-        renderInvite();
+        updateLivePill();
       });
   }
-
-  showBtn.addEventListener('click', function () {
-    inviteMsg.textContent = '';
-    renderInvite();
-    if (invites.length) inviteCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  });
 
   document.getElementById('copy-btn').addEventListener('click', function () {
     var text = inviteUrl.textContent;
@@ -236,8 +455,8 @@
       invites.splice(idx, 1);
       inviteMsg.className = 'msg';
       inviteMsg.textContent = 'Thanks for flagging it. Here is another one.';
+      updateLivePill();
       renderInvite();
-      if (!invites.length) emptyCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
   });
 
@@ -245,7 +464,7 @@
     return form.website && form.website.value !== '';
   }
 
-  function saveEmail(email, marketing, source, msgEl) {
+  function saveEmail(email, marketing, source, msgEl, done) {
     var row = { email: email, source: source, consented_marketing: marketing };
     if (marketing) row.consent_ts = new Date().toISOString();
     return sb.from('emails').insert(row).then(function (res) {
@@ -257,12 +476,27 @@
           msgEl.className = 'msg err';
           msgEl.textContent = 'Something went wrong. Please try again.';
         }
+        if (done) done(false);
       } else {
         msgEl.className = 'msg ok';
         msgEl.textContent = 'Saved. Thank you.';
+        if (done) done(true);
       }
     });
   }
+
+  document.getElementById('loop-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (honeypotTripped(e.target)) { goToStep(3); renderInvite(); return; }
+    var msg = document.getElementById('loop-msg');
+    var email = document.getElementById('loop-email').value.trim();
+    if (!email) { goToStep(3); renderInvite(); return; }
+    var consent = document.getElementById('loop-consent').checked;
+    saveEmail(email, consent, 'stay_in_loop', msg, function () {
+      gaveEmail = true;
+      setTimeout(function () { goToStep(3); renderInvite(); }, 700);
+    });
+  });
 
   document.getElementById('notify-form').addEventListener('submit', function (e) {
     e.preventDefault();
@@ -271,16 +505,6 @@
     var email = document.getElementById('notify-email').value.trim();
     if (!email) return;
     saveEmail(email, false, 'notify_empty', msg);
-  });
-
-  document.getElementById('loop-form').addEventListener('submit', function (e) {
-    e.preventDefault();
-    if (honeypotTripped(e.target)) return;
-    var msg = document.getElementById('loop-msg');
-    var email = document.getElementById('loop-email').value.trim();
-    var consent = document.getElementById('loop-consent').checked;
-    if (!email) return;
-    saveEmail(email, consent, 'stay_in_loop', msg);
   });
 
   var INVITE_RE = /^https:\/\/(invite\.instinct\.com\/j\/[A-Za-z0-9]+|app\.instinct\.com\/invite\?t=[A-Za-z0-9]+)$/;
@@ -309,6 +533,7 @@
         msg.textContent = 'Thank you. Your invite is now on the list.';
         document.getElementById('donate-url').value = '';
         invites.push({ id: null, url: url });
+        updateLivePill();
         renderInvite();
       }
     });
